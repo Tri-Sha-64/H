@@ -1,113 +1,262 @@
-﻿I've updated the code to increase the font sizes slightly when viewed on a mobile device. I also added a "touch-friendly" padding to the links so they are easier to tap with a thumb without accidentally hitting the wrong one.
-
-The desktop version remains exactly the same, maintaining that classic layout you prefer.
-
-HTML
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="en-us" http-equiv="Content-Language" />
-<meta content="Sha Raza.0" name="GENERATOR" />
-<meta content="Sha Raza.0" name="ProgId" />
 <link href="heart.ico" rel="SHORTCUT ICON" />
 <title>Tri-Sha Home Network</title>
 
 <style type="text/css">
-  a { text-decoration: none; }
-  
-  /* Hover effect for desktop */
-  a:hover, a:hover font { 
-    color: red !important; 
+/* 1. GLOBAL & BACKGROUND */
+  body {
+    background-color: #0d0d0d;
+    color: #a6acaf;
+    margin: 10px;
   }
 
-  /* --- Mobile Friendly Logic --- */
-  @media screen and (max-width: 800px) {
-    /* Stack tables vertically */
-    table, tbody, tr, td {
+  /* 2. BASE BUTTON STYLE (Chrome/Edge/Opera) */
+  a { 
+    text-decoration: none; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    width: 100%; 
+    height: 100%; 
+    border-radius: 8px; 
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center;
+    transition: 0.3s; 
+  }
+  a:hover, a:hover font { color: red !important; }
+
+  /* 3. TABLE & CELL BOXING */
+  td {
+    text-align: center !important;
+    vertical-align: middle !important;
+  }
+
+  td[bgcolor="#000000"] { 
+    cursor: pointer; 
+    border-radius: 8px; 
+    padding: 0 !important;
+    height: 1px;
+  }
+
+  .main-frame {
+    border-radius: 25px;
+    overflow: hidden; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  }
+
+  .img-shadow { 
+    box-shadow: 10px 10px 25px rgba(0,0,0,0.7); 
+    background-color: #fff; 
+    border-radius: 15px; 
+  }
+
+  /* 4. FORCE CENTER FIX */
+  .main-frame table table[width="437"], 
+  .main-frame table table[width="370"],
+  .nav-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: table !important; 
+  }
+
+  p { text-align: center !important; width: 100%; }
+
+  /* 5. 3D BLACK & SILVER DROPDOWN BOXES */
+  .nav-container {
+    display: inline-flex !important; 
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    border: 2px solid #708090;
+    border-radius: 6px;
+    padding: 2px;
+    background-color: #999;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3), inset 1px 1px 1px rgba(255,255,255,0.4);
+  }
+
+  select {
+    width: 150px;
+    height: 28px;
+    padding: 2px 5px;
+    border: 1px solid #777;
+    border-radius: 4px 0 0 4px;
+    background: linear-gradient(to bottom, #e0e0e0 0%, #C0C0C0 20%, #A9A9A9 100%);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .go-btn {
+    height: 28px;
+    padding: 0 12px;
+    border: 1px solid #222;
+    border-left: none; 
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(to bottom, #555555 0%, #222222 50%, #000000 100%);
+    border-top: 1px solid #777; 
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.7);
+  }
+
+  /* 6. SURGICAL FIX FOR FIREFOX */
+  @-moz-document url-prefix() {
+    td[bgcolor="#000000"] {
+      height: 20px !important;
+      max-height: 20px !important;
+      overflow: hidden !important;
+    }
+    a {
       display: block !important;
-      width: 100% !important;
-      box-sizing: border-box;
+      line-height: 20px !important;
+      height: 20px !important;
     }
-    
-    /* Increase font sizes for readability */
-    font[size="3"], font[size="4"] {
-      font-size: 1.2rem !important;
-    }
-    font[size="5"], font[size="+1"] {
-      font-size: 1.5rem !important;
-    }
-
-    /* Add space around links for easier tapping */
-    td p, td div {
-      padding: 8px 0 !important;
-      margin: 5px 0 !important;
-    }
-
-    /* Keep background images from stretching weirdly */
-    td[background] {
-      background-size: cover !important;
-      background-position: center !important;
-      height: auto !important;
-      min-height: 200px !important;
-    }
-
-    /* Scale iframes to fit screen width */
-    iframe {
-      width: 95% !important;
-      height: 70px !important;
-    }
-
-    /* Center search forms and inputs */
-    input[size] {
-      width: 80% !important;
-      font-size: 16px !important; /* Prevents iOS auto-zoom on focus */
-      margin-bottom: 5px;
-    }
-    
-    input[type="submit"] {
-      width: 80% !important;
-      padding: 10px;
-      margin-bottom: 15px;
+    a font {
+      line-height: 1 !important;
+      vertical-align: middle !important;
     }
   }
-</style>
 
-<bgsound autostart="true" id="music" loop="1" src="#">
+  /* 7. UTILITY CLASSES */
+  .standard-link { 
+    display: inline-block !important;
+    height: auto !important; 
+    width: auto !important; 
+    border-radius: 0; 
+  }
+
+  /* FIX FOR MAIN PHOTO (Trish & Sha) */
+  .main-photo-cell {
+    text-align: left !important;
+    vertical-align: bottom !important;
+    padding-left: 15px !important;
+    padding-bottom: 8px !important;
+  }
+  .main-photo-cell a {
+    justify-content: flex-start !important;
+    align-items: flex-end !important;
+  }
+
+  /* FIX FOR RAZA GRAY GIF (Tri-Sha) */
+  .tri-sha-gif-cell {
+    text-align: left !important;
+    vertical-align: bottom !important;
+    padding-left: 15px !important;
+    padding-bottom: 5px !important;
+  }
+
+</style>
 </head>
 
-<body bgcolor="#000000" marginwidth="10" marginheight="10" background="">
+<body marginwidth="10" marginheight="10">
 
-<table border="15" bordercolor="#d5d8dc" width="100%" align="center">
+<div align="center">
+<table border="15" bordercolor="#d5d8dc" cellpadding="0" cellspacing="0" class="main-frame">
   <tbody>
     <tr>
       <td>
-        <div align="center">
-<table background="" bgcolor="Silver" border="15" style="border-color: #444;" cellpadding="10" cellspacing="0" width="100%">
-<tbody>
- <tr>
-<td>
+        <table bgcolor="#C0C0C0" border="15" style="border-color: #444;" cellpadding="10" cellspacing="0" width="100%">
+          <tbody>
+            <tr>
+              <td>
+                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                  <tbody>
+                    <tr>
+                      <td colspan="3" valign="top">
+                    
 
-<table background="" bgcolor="Silver" border="0" style="border-color: #444;" cellpadding="10" cellspacing="0" width="100%">
- <tbody>
- <tr>
- <td colspan="3" valign="top" width="100%">
+                        <script>
+                          function openLink(buttonElement) {
+                            var select = buttonElement.previousElementSibling;
+                            var uri = select.options[select.selectedIndex].value;
+                            if (uri !== "") { 
+                              window.open(uri, "NewPage", "height=600,width=1000,scrollbars=yes"); 
+                              select.selectedIndex = 0; 
+                            }
+                          }
+                          function alphabetizeDropdowns() {
+                            var selects = document.querySelectorAll("select");
+                            selects.forEach(function(select) {
+                              var options = Array.from(select.options);
+                              if (options.length === 0) return;
+                              var header = options.shift(); 
+                              options = options.filter(opt => opt.text.trim() !== "" && !opt.text.includes("-"));
+                              options.sort((a, b) => a.text.localeCompare(b.text));
+                              select.innerHTML = "";
+                              select.appendChild(header);
+                              var sep = document.createElement("option");
+                              sep.text = "------------------";
+                              sep.disabled = true;
+                              select.appendChild(sep);
+                              options.forEach(opt => select.appendChild(opt));
+                              select.selectedIndex = 0; 
+                            });
+                          }
+                          window.onload = alphabetizeDropdowns;
+                        </script>
 
+                       <table bgcolor="Silver" border="0" cellpadding="10" cellspacing="0" width="100%">
+  <tr>
+    <td width="25%">
+      <div class="nav-container">
+        <select>
+          <option value="">Sha's Links</option>
+          <option value="">
 
-<table cellspacing="0" cellpadding="0" width="100%" border="0">
-<tr>
-<td width="33%"><center><p><iframe name="Sha1" style="border:0px double #663333" width="300" height="56" src="Trish.html"></iframe></p></center></td> 
-<td width="33%"><center>
-    <script>
-      function changePage() {
-        var f = document.forms.navigation;
-        var uri = f.pages.options[f.pages.selectedIndex].value;
-        if (uri !== "") { window.open(uri, "NewPage", "height=600,width=1000,scrollbars=yes"); }
-      }
-    </script>
-    <form name="navigation">
-      <select name="pages" size="1" onChange="changePage();" style="font-family: Arial, sans-serif; font-size: 16px;">
-        <option value="">--- Newspapers ---</option>
+<option value="https://travel.state.gov/content/travel/en/passports.html">travel.state.gov</option>
+<option value="https://mytravel.state.gov/s/online-passport-renewal">Passport renewal</option>
+<option value="https://www.ancestry.com/dna/">Ancestry</option>
+<option value="https://www.familytreedna.com/sign-in">Family Tree DNA</option>
+<option value="https://gedmatch.com/login1.php">GED Match</option>
+<option value="https://genomelink.io/dashboard/">Genomelink</option>
+<option value="https://mytrueancestry.com/">My True Ancestry</option>
+<option value="https://myheritage.com">My Heritage</option>
+<option value="https://sequencing.com/">Sequencing</option>
+<option value="https://www.wegene.com/en/">Wegene</option>
+<option value="https://www.eyeconsultants.net/">Eye Consultants</option>
+<option value="https://www.healthcare.gov/">Healthcare Marketplace</option>
+<option value="https://www.mypatientvisit.com/#/login?practiceID=GTYRRK">My Patient Visit</option>
+<option value="http://www.scymed.com/en/smnxdj/smnxdjaa.htm">Cholesterol Calc</option>
+<option value="https://pubinfo.vcu.edu/pathlabs/calc/creatinine_clearance.html">Creatinine Clearance</option>
+<option value="http://www.scymed.com/en/smnxps/psdgq277.htm">GFR (MDRD-6) Calc</option>
+<option value="http://www.scymed.com/en/smnxps/psdcc220.htm">Renal Calculator</option>
+<option value="http://www.aarp.org/">AARP</option>
+<option value="https://www5.lifeatworkportal.com/login/v3/pub/logonlw.jsp?client=athene&TYPE=33554433&REALMOID=06-6b49db8b-988a-4fd5-8da8-cea4f7d6b9ea&GUID=&SMAUTHREASON=0&METHOD=GET&SMAGENTNAME=-SM-%2fECLCayp1FmbNQeB8SpbDrXHl9zkEXf9bDjNljyJOfUcmnlSw%2bWtnRX22PUjAZXAitQaGxswNByEHmSEXegbOFLoE4Dv0PpA&TARGET=-SM-https%3a%2f%2fwww5%2elifeatworkportal%2ecom%2fathene">Athene</option>
+<option value="https://mypensiononline.benefitcenter.com">Reynolds Group Pension</option>
+<option value="http://www.socialsecurity.gov/mystatement/">Social Security & Medicare</option>
+<option value="https://www.federalregister.gov/">federal Register</option>
+<option value="https://defensivedriveracademy.com/signuplink/?savewithmottern">Defensive Driving Course</option>
+<option value="https://haveibeenpwned.com/">Email check</option>
+<option value="https://www.netgear.com/mynetgear/registration/login.aspx">Netgear</option>
+<option value="https://www.xfinity.com/support/devices/">xfinity Device Compatability</option>
+<option value="https://www.xfinity.com/support/schedule-callback">Xfinity Troubleshoot</option>
+<option value="https://dor.georgia.gov/it-511-individual-income-tax-booklet">individual-income-tax-booklet</option>
+<option value="http://www.paycheckcity.com/calculator/netpay/us/georgia/calculator.html">Paycheck Calculator</option>
+<option value="http://www.lulu.com/author/">Lulu</option>
+<option value="https://www.caranddriver.com/features/g15105913/ford-mustang-gt-0-60-times/">Mustang Performance</option>
+<option value="https://docs.microsoft.com/en-us/windows/security/threat-protection/intelligence/safety-scanner-download"> Msft Safety Scanner</option>
+
+<option value=""></option>
+<option value=""></option>
+<option value="">
+<option value="">
+<option value="">
+
+        </select>
+        <button class="go-btn" onclick="openLink(this)">Go</button>
+      </div>
+    </td>
+
+    <td width="25%">
+      <div class="nav-container">
+        <select>
+          <option value="">Newspapers</option>
         <option value="http://abcnews.go.com/">ABC</option>
         <option value="http://www.antiwar.com/">Anti War News</option>
         <option value="https://apnews.com/">AP News</option>
@@ -151,7 +300,16 @@ HTML
         <option value=""> </option>
         <option value=""> </option>
         <option value=""> </option>
+       
+        </select>
+        <button class="go-btn" onclick="openLink(this)">Go</button>
+      </div>
+    </td>
 
+<td width="25%">
+      <div class="nav-container">
+        <select>
+        <option value="">News Spanish</option>
         <option value="http://www.emol.com/">El Mercurio (Chile)</option>
         <option value="http://www.elmostrador.cl/">El Mostrador</option>
         <option value="http://www.elpais.es/">El Pais</option>
@@ -159,207 +317,265 @@ HTML
         <option value="http://www.lun.com/">Las Ultimas Noticias</option>
         <option value="http://www.quepasa.cl/">Que Pasa</option>
         <option value="http://www.ed.cl/">Revista Ed</option>
-        <option value="http://www.tercera.cl/">La Tercera (Chile)</option>
-      </select>
-    </form>
-</center></td>
-<td width="33%"><center><p><iframe name="Sha2" style="border:0px double #663333" width="300" height="56" src="Sha.htm"></iframe></p></center></td>
-</tr>
+        <option value="http://www.caras.cl/">Caras from Chile
+        <option value="http://chile.com/">Chile</option>
+        <option value="http://www.hola.es/">Hola from Spain</option>
+        <option value="http://terra.cl/">Terra Chile</option>
+
+        </select>
+        <button class="go-btn" onclick="openLink(this)">Go</button>
+      </div>
+    </td>
+
+
+
+
+    <td width="25%">
+      <div class="nav-container">
+        <select>
+          <option value="">Trish's Links</option>
+          <option value="">
+
+<option value="https://www.momondo.com/flight-search/ATL-SCL/2026-05-05/2026-05-26/1adults/1seniors?ucs=3gista&sort=bestflight_a&fs=stops=1&attempt=1&lastms=1751555221362">Travel Chile</option>
+<option value="https://upgradedpoints.com/travel/best-websites-for-booking-cheap-flights/">Travel Website</option>
+<option value="https://crystalinmarie.com/">Crystalin Marie</option>
+<option value="https://www.extrapetite.com/">Extra Petite</option>
+<option value="https://fashionjackson.com/">Fashion Jackson</option>
+<option value="https://leoncechenal.com/">Leonce Chenal</option>
+<option value="https://www.thegirlguide.com/">The Girl Guide</option>
+<option value="https://withlovefromkat.com/">With Love From Kat</option>
+<option value="https://aglassofbovino.com/"> A Glass of Bovino</option>
+<option value="https://bungalowblueinteriors.com/blog-2/">Bunglow Blue</option>
+<option value="https://carlyriordan.com/">Carly Riordan</option>
+<option value="https://cindyhattersleydesign.com/blog/">Cindy Hattersley design</option>
+<option value="https://classiccasualhome.com/">Classic Casual Home</option>
+<option value="https://habituallychic.luxury/">Habitually Chic</option>
+<option value="https://katieconsiders.com/">Katie Considers</option>
+<option value="https://jcathell.com/"> J Cathell.</option>
+<option value="https://maisondecinq.com/">Maison De Cinq</option>
+<option value="https://melissapenfold.com/">Melissa Penfold</option>
+<option value="https://mostlovelythings.com/blog/">Most Lovely Things</option>
+<option value="https://www.pencilandpaperco.com/blog">PENCIL & PAPER Blog</option>
+<option value="https://stacieflinner.com/blog/">Stacie Flinner</option>
+<option value="https://dailyconnoisseur.blogspot.com/">The Daily Connoissur</option>
+<option value="https://thegardenerscottage.blogspot.com/">The Gardners Cottage</option>
+<option value="https://www.thepottedboxwood.com/">The Potted Boxwood</option>
+<option value="https://thezhush.com/">The ZHUSH</option>
+<option value="https://www.fufuskitchen.com/">Fufu's Kitchen</option>
+<option value="https://www.giverecipe.com/#">Give Recipe</option>
+<option value="https://feelgoodfoodie.net/">Feel Good Foodie</option>
+<option value="https://www.halfbakedharvest.com/">Half Baked Harvest</option>
+<option value="https://www.inspiredtaste.net/category/recipes/">Inspired Taste recipes</option>
+<option value="https://jenanzammar.com/">Jenan Zammar</option>
+<option value="https://www.lahbco.com/recipe-index">Lahbco</option>
+<option value="https://moribyan.com/recipes/">Moribyan</option>
+<option value="http://smittenkitchen.com/">smitten kitchen</option>
+<option value="http://www.anthropologie.com/">Anthropologie</option>
+<option value="http://www.bloomingdales.com/ ">bloomingdales</option>
+<option value="http://www.crateandbarrel.com/">Crate & Barrel</option>
+<option value="https://www.madewell.com/">Madewell</option>
+<option value="http://www.neimanmarcus.com/">Nieman Marcus</option>
+<option value="http://www.saksfifthavenue.com/Entry.jsp?isNS=0">Saks</option>
+<option value="http://www.sephora.com/">Sephora</option>
+<option value="http://shopbop.com/">ShopBop</option>
+<option value="http://williams-sonoma.com/">williams Sonoma</option>
+<option value="https://www.propertyiq.com/">Property IQ</option>
+
+
+        </select>
+        <button class="go-btn" onclick="openLink(this)">Go</button>
+      </div>
+    </td>
+  </tr>
 </table>
 
-<table border="4" style="border-color: #444;" cellpadding="0" width="100%">
-  <tbody>
-    <tr>
-      <td bgcolor="#000000"><p align="center"><a href="https://www.amazon.com/gp/video/movie" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Amazon</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://www.cwtv.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">CW tv</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://athome.fandango.com/content/browse/free" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Fandango</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://www.peacocktv.com/watch/home" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Peacock tv</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://pluto.tv/en/live-tv/pluto-tv-fantastic" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Pluto tv</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://therokuchannel.roku.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Roku tv</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="https://tubitv.com/home" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Tubi tv</font></a></p></td>
-      <td bgcolor="#000000"><p align="center"><a href="http://www.youtube.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">You Tube</font></a></p></td>
+                        <table border="4" style="border-color: #444; border-collapse: separate; border-spacing: 5px;" cellpadding="0" width="100%">
+                          <tr>
+                            <td bgcolor="#000000"><a href="https://www.amazon.com/gp/video/movie" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Amazon</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.cwtv.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">CW tv</font></a></td>
+                            <td bgcolor="#000000"><a href="https://athome.fandango.com/content/browse/free" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Fandango</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.peacocktv.com/watch/home" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Peacock tv</font></a></td>
+                            <td bgcolor="#000000"><a href="https://pluto.tv/en/live-tv/pluto-tv-fantastic" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Pluto tv</font></a></td>
+                            <td bgcolor="#000000"><a href="https://therokuchannel.roku.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Roku tv</font></a></td>
+                            <td bgcolor="#000000"><a href="https://tubitv.com/home" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Tubi tv</font></a></td>
+                            <td bgcolor="#000000"><a href="http://www.youtube.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">You Tube</font></a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td width="200" valign="top">
+                        <table border="5" style="border-color: #444; border-collapse: separate; border-spacing: 3px;" cellpadding="0" width="100%">
+                          <tr><td bgcolor="#000000"><a href="https://member.ambetterhealth.com/sso/login" target="_blank"><font color="#FFFFFF" face="Times">ambetter</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://smile.amazon.com/" target="_blank"><font color="#FFFFFF" face="Times">Amazon</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www5.lifeatworkportal.com/athene" target="_blank"><font color="#FFFFFF" face="Times">Athene</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://bananarepublic.gap.com/" target="_blank"><font color="#FFFFFF" face="Times">Banana Republic</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://bananarepublicfactory.gapfactory.com/" target="_blank"><font color="#FFFFFF" face="Times">Banana Republic Factory</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://bananarepublic.barclaysus.com/servicing/home" target="_blank"><font color="#FFFFFF" face="Times">Barclays</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://support.google.com/websearch/answer/465" target="_blank"><font color="#FFFFFF" face="Times">Clear Google</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://cobbassessor.org/personal-property/" target="_blank"><font color="#FFFFFF" face="Times">Cobb County Tax</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.costco.com/LogonForm" target="_blank"><font color="#FFFFFF" face="Times">COSTCO</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://cronometer.com/#diary" target="_blank"><font color="#FFFFFF" face="Times">Cronometer</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.deviantart.com/" target="_blank"><font color="#FFFFFF" face="Times">Deviantart</font></a></td></tr>
+                        </table>
+                        <br>
+                        <table border="5" class="img-shadow" style="border-color: #444;" cellpadding="5" width="100%" height="100">
+                          <tr>
+                            <td align="left" valign="middle">
+                              <img src="america.gif" width="75" style="border-radius: 5px; vertical-align: middle; margin-left: 10px;">
+                              <font color="#000000" face="Algerian" size="+1" style="float: right; padding-top: 45px; padding-right: 15px;">USA</font>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <table border="5" style="border-color: #444; border-collapse: separate; border-spacing: 3px;" cellpadding="0" width="100%">
+                          <tr><td bgcolor="#000000"><a href="https://www.duolingo.com/learn" target="_blank"><font color="#FFFFFF" face="Times">Duolingo</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://auth.ecobee.com/" target="_blank"><font color="#FFFFFF" face="Times">Ecobee</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="http://www.facebook.com/home.php?" target="_blank"><font color="#FFFFFF" face="Times">Facebook</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.fontsquirrel.com/fonts/alex-brush" target="_blank"><font color="#FFFFFF" face="Times">Fonts</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.gap.com/" target="_blank"><font color="#FFFFFF" face="Times">Gap</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://gemini.google.com/app" target="_blank"><font color="#FFFFFF" face="Times">Gemini</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://georgiakidney.followmyhealth.com" target="_blank"><font color="#FFFFFF" face="Times">Georgia Kidney</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://gng.com/my-gng.php" target="_blank"><font color="#FFFFFF" face="Times">Georgia Natural Gas</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://customerservice2.southerncompany.com/Login" target="_blank"><font color="#FFFFFF" face="Times">Georgia Power</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://docs.gimp.org/2.8/en/" target="_blank"><font color="#FFFFFF" face="Times">Gimp</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://github.com/login" target="_blank"><font color="#FFFFFF" face="Times">GitHub</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.bitdegree.org/learn/html" target="_blank"><font color="#FFFFFF" face="Times">HTML</font></a></td></tr>
+                        </table>
+                      </td>
+
+                      <td align="center" valign="top">
+                        <table class="img-shadow" width="437" height="262" border="20" style="border-color: #444; background: url('TD & Me 12-06-2025.png') no-repeat center; background-size: cover; table-layout: fixed;">
+                          <tr>
+                            <td class="main-photo-cell">
+                              <a href="https://tri-sha-64.github.io/H/" target="_blank" class="standard-link">
+                                <font color="#360E07" face="monotype corsiva" size="5">Trish & Sha</font>
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <table background="Raza Gray.gif" height="90" width="370" border="10" class="img-shadow" style="border-color: #444; border-radius: 15px;" cellpadding="0">
+                          <tr>
+                            <td class="tri-sha-gif-cell">
+                              <font color="#000000" face="Great Vibes" size="6">Tri-Sha</font>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <p><a href="http://constitutionus.com/" class="standard-link"><font color="#000000" face="Algerian" size="6">We the people <font size="5">of the United States...</font></font></a></p>
+                        <font color="#000000" face="monotype corsiva" size="5">
+                          <script>
+                            var dayNames = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"];
+                            var monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                            var dt = new Date();
+                            document.write(dayNames[dt.getDay()] + ", " + monthNames[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear());
+                          </script>
+                        </font>
+                        <br><br>
+                        <table border="4" style="border-color: #444; border-collapse: separate; border-spacing: 5px;" cellpadding="0" width="100%">
+                          <tr>
+                            <td bgcolor="#000000"><a href="https://exceljet.net/" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="3">Exceljet</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.grammarly.com/grammar-check" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="3">Grammar Check</font></a></td>
+                          </tr>
+                        </table>
+                        <br>
+                        <table border="4" style="border-color: #444; border-collapse: separate; border-spacing: 5px;" cellpadding="0" width="100%">
+                          <tr>
+                            <td bgcolor="#000000"><a href="https://translate.google.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Translate</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.wordhippo.com/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Word Hippo</font></a></td>
+                            <td bgcolor="#000000"><a href="https://forvo.com/languages/tr/" target="_blank"><font color="#a6acaf" face="Great Vibes" size="4">Pronunciation</font></a></td>
+                          </tr>
+                        </table>
+                        <br>
+                        <form action="https://duckduckgo.com/" method="get" target="_blank" style="display:inline;"><input name="q" size="10" style="border-radius: 5px;"> <input type="submit" value="DuckDuckGo" style="border-radius: 5px;"></form>
+                        <form action="http://www.bing.com/search" method="get" target="_blank" style="display:inline;"><input name="q" size="10" style="border-radius: 5px;"> <input type="submit" value="Bing" style="border-radius: 5px;"></form>
+                        <form action="http://www.google.com/search" method="get" target="_blank" style="display:inline;"><input name="q" size="10" style="border-radius: 5px;"> <input type="submit" value="Google" style="border-radius: 5px;"></form>
+                        <br><br>
+                        <table border="0" width="100%">
+                          <tr>
+                            <td Width ="25%" align="center"><a href="https://www.fedex.com/apps/fedextrack/?action=track" target="_blank" class="standard-link"><img src="FedEx.png" height="40" border="0"></a></td>
+                            <td Width= "50%" align="center">
+                              <form action="https://tools.usps.com/go/TrackConfirmAction" method="post" target="_blank">
+                                <b><font color="#000000">USPS</font></b><br><input type="text" name="tLabels" size="12" style="border-radius: 5px;"><input type="submit" value="Search" style="border-radius: 5px;">
+                              </form>
+                            </td>
+                            <td Width= "25%" align="center"><a href="https://www.ups.com/track" target="_blank" class="standard-link"><img src="UPS.jpg" height="40" border="0"></a></td>
+                          </tr>
+                        </table>
+                      </td>
+
+                      <td width="200" valign="top">
+                        <table border="5" style="border-color: #444; border-collapse: separate; border-spacing: 3px;" cellpadding="0" width="100%">
+                          <tr><td bgcolor="#000000"><a href="https://htmlcolorcodes.com/" target="_blank"><font color="#FFFFFF" face="Times">HTML Color</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.instagram.com/" target="_blank"><font color="#FFFFFF" face="Times">Instagram</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.jcrew.com" target="_blank"><font color="#FFFFFF" face="Times">J. Crew</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.medicare.gov" target="_blank"><font color="#FFFFFF" face="Times">Medicare</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.msn.com/en-us/money" target="_blank"><font color="#FFFFFF" face="Times">MSN Money</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://mychart.wellstar.org/mychart/" target="_blank"><font color="#FFFFFF" face="Times">My Chart</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.nordstrom.com/" target="_blank"><font color="#FFFFFF" face="Times">Nordstrom</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="http://orbilogin.net/index.htm" target="_blank"><font color="#FFFFFF" face="Times">orbi</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.publix.com/" target="_blank"><font color="#FFFFFF" face="Times">Publix</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://myquest.questdiagnostics.com" target="_blank"><font color="#FFFFFF" face="Times">Quest Diagnostic</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.rei.com/" target="_blank"><font color="#FFFFFF" face="Times">R E I</font></a></td></tr>
+                        </table>
+                        <br>
+                        <table border="5" class="img-shadow" style="border-color: #444;" cellpadding="5" width="100%" height="100">
+                          <tr>
+                            <td align="left" valign="middle">
+                              <img src="Chile.gif" height="55" width="75" style="border-radius: 5px; vertical-align: middle; margin-left: 10px;">
+                              <font color="#000000" face="monotype corsiva" size="5" style="float: right; padding-top: 45px; padding-right: 15px;">Chile</font>
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                        <table border="5" style="border-color: #444; border-collapse: separate; border-spacing: 3px;" cellpadding="0" width="100%">
+                          <tr><td bgcolor="#000000"><a href="https://account.ring.com" target="_blank"><font color="#FFFFFF" face="Times">Ring</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.samsung.com/us/" target="_blank"><font color="#FFFFFF" face="Times">Samsung</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.snopes.com/" target="_blank"><font color="#FFFFFF" face="Times">Snopes</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.ssa.gov/myaccount/" target="_blank"><font color="#FFFFFF" face="Times">Social Security</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.statefarm.com" target="_blank"><font color="#FFFFFF" face="Times">State Farm</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.thecalculatorsite.com/cooking/grams-tablespoons.php" target="_blank"><font color="#FFFFFF" face="Times">The Calculator</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.tiktok.com/foryou?lang=en" target="_blank"><font color="#FFFFFF" face="Times">TIKTOK</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.medicare.uhc.com/aarp" target="_blank"><font color="#FFFFFF" face="Times">United Health Care - AARP</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.accuweather.com" target="_blank"><font color="#FFFFFF" face="Times">Weather</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.wellcare.com/" target="_blank"><font color="#FFFFFF" face="Times">Wellcare</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://www.xfinity.com/learn/internet-service/auth" target="_blank"><font color="#FFFFFF" face="Times">Xfinity</font></a></td></tr>
+                          <tr><td bgcolor="#000000"><a href="https://twitter.com/home" target="_blank"><font color="#FFFFFF" face="Times">X-twitter</font></a></td></tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="3">
+                        <table border="4" style="border-color: #444; border-collapse: separate; border-spacing: 5px;" cellpadding="0" width="100%">
+                          <tr>
+                            <td bgcolor="#000000"><a href="https://www.cobbcounty.org/courts/probate-court" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">Cobb Probate Court</font></a></td>
+                            <td bgcolor="#000000"><a href="https://gtc.dor.ga.gov/_/" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">GA IRS Account</font></a></td>
+                            <td bgcolor="#000000"><a href="https://gatesatparksidevillage.com" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">Gates</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.irs.gov/payments/view-your-tax-account" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">IRS My Account</font></a></td>
+                            <td bgcolor="#000000"><a href="https://mvp.sos.ga.gov/s/mvp-landing-page" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">My Voter Page</font></a></td>
+                            <td bgcolor="#000000"><a href="https://www.schwab.com/ira/ira-calculators/rmd" target="_blank"><font color="#a6acaf" face="monotype corsiva" size="+1">RMD Calculator</font></a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
     </tr>
   </tbody>
 </table>
-
- <tr>
- <td width="200" valign="top">
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%">
-    <tbody>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://member.ambetterhealth.com/sso/login" target="_blank"><font color="#FFFFFF" face="Times" size="+1">ambetter</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://smile.amazon.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Amazon</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www5.lifeatworkportal.com/login" target="_blank"><font color="#FFFFFF" face="Times" size="3">Athene</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://bananarepublic.gap.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Banana Republic</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://bananarepublicfactory.gapfactory.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Banana Republic Factory</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://bananarepublic.barclaysus.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Barclays</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://support.google.com/websearch/answer/465" target="_blank"><font color="#FFFFFF" face="Times" size="3">Clear Google</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://cobbassessor.org/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Cobb County Tax</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.costco.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">COSTCO</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://cronometer.com/" target="_blank"><font color="#f6ddcc" face="Times" size="3">Cronometer</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.deviantart.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Deviantart</font></a></p></td></tr>
-    </tbody>
-  </table>
-  <br>
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%" height="100">
-    <tr><td align="center"><img src="america.gif" width="75"> <font color="#000000" face="Algerian" size="+1">USA</font></td></tr>
-  </table>
-  <br>
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%">
-    <tbody>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.duolingo.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Duolingo</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="http://www.facebook.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Facebook</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.fontsquirrel.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Fonts</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.gap.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Gap</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://gemini.google.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Gemini</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://georgiakidney.followmyhealth.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Georgia Kidney</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://gng.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">GNG</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://customerservice2.southerncompany.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Georgia Power</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://docs.gimp.org/" target="_blank"><font color="#FFFFFF" face="Times" size="3">Gimp</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://github.com/" target="_blank"><font color="#FFFFFF" face="Times" size="3">GitHub</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.bitdegree.org/" target="_blank"><font color="#FFFFFF" face="Times" size="3">HTML</font></a></p></td></tr>
-    </tbody>
-  </table>
- </td>
-
- <td valign="center">
- <div align="center">
-  <table background="TD & Me 12-06-2025.png" width="437" height="262" cellspacing="0" cellpadding="10" border="20" style="border-color: #444;">
-    <tbody><tr><td valign="bottom"><a href="https://tri-sha-64.github.io/G/" target="_blank"><font color="#360E07" face="Great Vibes" size="5">Trish &amp; Sha</font></a></td></tr></tbody>
-  </table>
-  <br>
-  <table background="Raza Gray.gif" height="90" width="370" border="10" cellpadding="10" style="border-color: #444;">
-    <tbody><tr><td valign="bottom"><font color="#000000" face="Great Vibes" size="6">Tri-Sha</font></td></tr></tbody>
-  </table>
-  <br>
-  <table border="0" width="100%">
-    <tr><td align="center"><a href="http://constitutionus.com/"><font color="#000000" face="Algerian" size="6">We the people <font size="5">of the United States...</font></font></a></td></tr>
-  </table>
-  <br>
-  <font color="#000000" face="monotype corsiva" size="5">
-    <script>
-      var dayNames = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"];
-      var monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-      var dt = new Date();
-      document.write(dayNames[dt.getDay()] + ", " + monthNames[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear());
-    </script>
-  </font>
-  <br><br>
-  <table border="4" style="border-color: #444;" width="100%">
-    <tr>
-      <td bgcolor="#000000" align="center"><a href="https://exceljet.net/"><font color="#a6acaf" face="monotype corsiva" size="5">Exceljet</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://www.grammarly.com/"><font color="#a6acaf" face="monotype corsiva" size="5">Grammar Check</font></a></td>
-    </tr>
-  </table>
-  <br>
-  <table border="4" style="border-color: #444;" width="100%">
-    <tr>
-      <td bgcolor="#000000" align="center"><a href="https://translate.google.com/"><font color="#a6acaf" face="Great Vibes" size="4">Translate</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://www.wordhippo.com/"><font color="#a6acaf" face="Great Vibes" size="4">Word Hippo</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://forvo.com/"><font color="#a6acaf" face="Great Vibes" size="4">Pronunciation</font></a></td>
-    </tr>
-  </table>
-  <br>
-  <center>
-  <table border="0">
-    <tr>
-      <td><form action="https://duckduckgo.com/" method="get" target="_blank"><input name="q" size="10"><input type="submit" value="DDG"></form></td>
-      <td><form action="http://www.bing.com/search" method="get" target="_blank"><input name="q" size="10"><input type="submit" value="Bing"></form></td>
-      <td><form action="http://www.google.com/search" method="get" target="_blank"><input name="q" size="10"><input type="submit" value="Google"></form></td>
-    </tr>
-  </table>
-  </center>
-  <br>
-  <table border="0" width="100%">
-    <tr>
-      <td align="center"><a href="https://www.fedex.com/"><img src="FedEx.png" height="30"></a></td>
-      <td align="center"><form action="https://tools.usps.com/" method="post"><input type="text" name="tLabels" size="10"><input type="submit" value="USPS"></form></td>
-      <td align="center"><a href="https://www.ups.com/"><img src="UPS.jpg" height="30"></a></td>
-    </tr>
-  </table>
- </div>
- </td>
-
- <td width="200" valign="top">
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%">
-    <tbody>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://htmlcolorcodes.com/"><font color="#FFFFFF" face="Times" size="3">HTML Color</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.instagram.com/"><font color="#FFFFFF" face="Times" size="3">Instagram</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.jcrew.com/"><font color="#FFFFFF" face="Times" size="3">J. Crew</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.medicare.gov/"><font color="#FFFFFF" face="Times" size="3">Medicare</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.msn.com/en-us/money"><font color="#FFFFFF" face="Times" size="3">MSN Money</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://mychart.wellstar.org/"><font color="#FFFFFF" face="Times" size="3">My Chart</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.nordstrom.com/"><font color="#FFFFFF" face="Times" size="3">Nordstrom</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="http://orbilogin.net/"><font color="#FFFFFF" face="Times" size="3">orbi</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.publix.com/"><font color="#FFFFFF" face="Times" size="3">Publix</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://myquest.questdiagnostics.com/"><font color="#FFFFFF" face="Times" size="3">Quest</font></a></p></td></tr>
-      <tr><td bgcolor="#000000"><p align="center"><a href="https://www.rei.com/"><font color="#FFFFFF" face="Times" size="3">REI</font></a></p></td></tr>
-    </tbody>
-  </table>
-  <br>
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%" height="100">
-    <tr><td align="center"><img src="Chile.gif" height="55" width="75"> <font face="monotype corsiva" size="5">Chile</font></td></tr>
-  </table>
-  <br>
-  <table border="5" style="border-color: #444;" cellpadding="0" width="100%">
-    <tbody>
-      <tr><td bgcolor="#000000" align="center"><a href="https://account.ring.com/"><font color="#FFFFFF" face="Times" size="3">Ring</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.samsung.com/"><font color="#FFFFFF" face="Times" size="3">Samsung</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.snopes.com/"><font color="#DDF527" face="Times" size="3">Snopes</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.ssa.gov/"><font color="#FFFFFF" face="Times" size="3">Social Security</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.statefarm.com/"><font color="#FFFFFF" face="Times" size="3">State Farm</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.thecalculatorsite.com/"><font color="#FFFFFF" face="Times" size="3">Calculator</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.tiktok.com/"><font color="#FFFFFF" face="Times" size="3">TIKTOK</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.medicare.uhc.com/"><font color="#FFFFFF" face="Times" size="3">UHC - AARP</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.accuweather.com/"><font color="#27F561" face="Times" size="3">Weather</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://www.wellcare.com/"><font color="#FFFFFF" face="Times" size="3">Wellcare</font></a></td></tr>
-      <tr><td bgcolor="#000000" align="center"><a href="https://twitter.com/"><font color="#FFFFFF" face="Times" size="3">X-twitter</font></a></td></tr>
-    </tbody>
-  </table>
- </td>
- </tr>
-
- <tr>
- <td colspan="3">
-  <table border="4" style="border-color: #444;" width="100%">
-    <tr>
-      <td bgcolor="#000000" align="center"><a href="https://www.cobbcounty.org/"><font color="#a6acaf" face="monotype corsiva" size="4">Probate</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://gtc.dor.ga.gov/"><font color="#a6acaf" face="monotype corsiva" size="4">GA IRS</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://gatesatparksidevillage.com"><font color="#a6acaf" face="monotype corsiva" size="4">Gates</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://www.irs.gov/"><font color="#a6acaf" face="monotype corsiva" size="4">IRS</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://lginsiderscollective.my-take.com/"><font color="Orange" face="monotype corsiva" size="4">LG</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://mvp.sos.ga.gov/"><font color="#a6acaf" face="monotype corsiva" size="4">Voter Page</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://www.schwab.com/"><font color="#a6acaf" face="monotype corsiva" size="4">RMD</font></a></td>
-      <td bgcolor="#000000" align="center"><a href="https://www.xfinity.com/"><font color="#a6acaf" face="monotype corsiva" size="4">Xfinity</font></a></td>
-    </tr>
-  </table>
-  
- </td>
- </tr>
-
- </td>
- </tr>
- </tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+
+<div align="center" style="margin-top: 20px;">
+  <font color="#a6acaf" face="Great Vibes" size="4">Site Modified: <script>document.write(document.lastModified);</script></font>
+</div>
 
 </body>
 </html>
-</table?
-<TR>
-<TD>
-<div align="center" style="margin-top: 20px;">
-    <font color="#a6acaf" face="Great Vibes" size="4">
-      Site Modified: <script>document.write(document.lastModified);</script>
-    </font>
-  </div>
-</tr>
-
-</td>
